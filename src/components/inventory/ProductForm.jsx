@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,10 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
     category: product?.category?._id || '',
     stock: product?.stock || '',
   });
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imagePreview, setImagePreview] = useState(
+    product?.images?.map(img => getImageUrl(img)) || []
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,13 +22,41 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedImages(files);
+    
+    // Create preview URLs
+    const previewUrls = files.map(file => URL.createObjectURL(file));
+    setImagePreview(previewUrls);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
-      ...formData,
-      price: parseFloat(formData.price),
-      stock: parseInt(formData.stock),
+    
+    console.log('Form data:', formData); // Debug log
+    
+    // Always send FormData for consistency
+    const submitData = new FormData();
+    
+    // Add form data with validation
+    if (formData.name) submitData.append('name', formData.name);
+    if (formData.description) submitData.append('description', formData.description);
+    if (formData.price) submitData.append('price', formData.price);
+    if (formData.category) submitData.append('category', formData.category);
+    if (formData.stock) submitData.append('stock', formData.stock);
+    
+    // Add images
+    selectedImages.forEach(image => {
+      submitData.append('images', image);
     });
+    
+    // Debug FormData
+    for (let pair of submitData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+    
+    onSubmit(submitData);
   };
 
   return (
@@ -78,6 +111,35 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
           placeholder="Enter product description"
           required
         />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Product Images
+        </label>
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleImageChange}
+          className="input-field"
+        />
+        <p className="text-sm text-gray-500 mt-1">Select up to 5 images</p>
+        
+        {/* Image Preview */}
+        {imagePreview.length > 0 && (
+          <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
+            {imagePreview.map((url, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={url}
+                  alt={`Preview ${index + 1}`}
+                  className="w-full h-20 object-cover rounded border"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

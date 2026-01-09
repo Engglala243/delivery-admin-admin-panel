@@ -1,7 +1,8 @@
 import React from 'react';
-import { PencilIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { getImageUrl, handleImageError } from '../../utils/imageUtils';
 
-const ProductTable = ({ products, isLoading, onEdit }) => {
+const ProductTable = ({ products, isLoading, onEdit, onDelete }) => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -23,6 +24,9 @@ const ProductTable = ({ products, isLoading, onEdit }) => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Image
+            </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Name
             </th>
@@ -46,6 +50,27 @@ const ProductTable = ({ products, isLoading, onEdit }) => {
         <tbody className="bg-white divide-y divide-gray-200">
           {products.map((product) => (
             <tr key={product._id} className="hover:bg-gray-50">
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="flex-shrink-0 h-16 w-16">
+                  {product.images && product.images.length > 0 ? (
+                    <>
+                      <img
+                        className="h-16 w-16 rounded-lg object-cover"
+                        src={getImageUrl(product.images[0])}
+                        alt={product.name}
+                        onError={handleImageError}
+                      />
+                      <div className="hidden h-16 w-16 bg-gray-200 rounded-lg items-center justify-center">
+                        <span className="text-gray-400 text-xs">No Image</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="h-16 w-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <span className="text-gray-400 text-xs">No Image</span>
+                    </div>
+                  )}
+                </div>
+              </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm font-medium text-gray-900">{product.name}</div>
                 <div className="text-sm text-gray-500 truncate max-w-xs">
@@ -73,12 +98,22 @@ const ProductTable = ({ products, isLoading, onEdit }) => {
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <button
-                  onClick={() => onEdit(product)}
-                  className="text-primary-600 hover:text-primary-900"
-                >
-                  <PencilIcon className="h-5 w-5" />
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => onEdit(product)}
+                    className="text-primary-600 hover:text-primary-900"
+                    title="Edit Product"
+                  >
+                    <PencilIcon className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={() => onDelete(product)}
+                    className="text-red-600 hover:text-red-900"
+                    title="Delete Product"
+                  >
+                    <TrashIcon className="h-5 w-5" />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

@@ -9,6 +9,10 @@ const userService = {
   getById: (id) => {
     return api.get(API_ENDPOINTS.USER_BY_ID(id));
   },
+
+  delete: (id) => {
+    return api.delete(API_ENDPOINTS.USER_BY_ID(id));
+  },
 };
 
 export default userService;

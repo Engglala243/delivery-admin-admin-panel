@@ -1,5 +1,5 @@
-import React from 'react';
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import React from "react";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 const CategoryTable = ({ categories, isLoading, onEdit, onDelete }) => {
   if (isLoading) {
@@ -46,12 +46,12 @@ const CategoryTable = ({ categories, isLoading, onEdit, onDelete }) => {
               <td className="px-6 py-4 whitespace-nowrap">
                 {category.image ? (
                   <img
-                    src={`http://localhost:2020${category.image}`}
+                    src={`https://delivery-admin-server.onrender.com${category.image}`}
                     alt={category.name}
                     className="h-10 w-10 rounded-lg object-cover"
                     onError={(e) => {
-                      console.log('Image failed:', e.target.src);
-                      e.target.style.display = 'none';
+                      console.log("Image failed:", e.target.src);
+                      e.target.style.display = "none";
                     }}
                   />
                 ) : (
@@ -61,18 +61,24 @@ const CategoryTable = ({ categories, isLoading, onEdit, onDelete }) => {
                 )}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">{category.name}</div>
+                <div className="text-sm font-medium text-gray-900">
+                  {category.name}
+                </div>
               </td>
               <td className="px-6 py-4">
                 <div className="text-sm text-gray-500 max-w-xs truncate">
-                  {category.description || 'No description'}
+                  {category.description || "No description"}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                  category.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                }`}>
-                  {category.isActive ? 'Active' : 'Inactive'}
+                <span
+                  className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                    category.isActive
+                      ? "bg-green-100 text-green-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
+                  {category.isActive ? "Active" : "Inactive"}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">

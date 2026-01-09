@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, createProduct } from '../../redux/slices/productSlice';
+import { fetchProducts, createProduct, updateProduct, deleteProduct } from '../../redux/slices/productSlice';
 import { fetchCategories } from '../../redux/slices/categorySlice';
 import ProductForm from '../../components/inventory/ProductForm';
 import ProductTable from '../../components/inventory/ProductTable';
@@ -22,9 +22,15 @@ const Products = () => {
 
   const handleCreate = async (data) => {
     try {
-      await dispatch(createProduct(data)).unwrap();
-      toast.success('Product created successfully!');
+      if (editingProduct) {
+        await dispatch(updateProduct({ id: editingProduct._id, data })).unwrap();
+        toast.success('Product updated successfully!');
+      } else {
+        await dispatch(createProduct(data)).unwrap();
+        toast.success('Product created successfully!');
+      }
       setShowModal(false);
+      setEditingProduct(null);
     } catch (error) {
       // Error handled by Redux
     }
@@ -33,6 +39,17 @@ const Products = () => {
   const handleEdit = (product) => {
     setEditingProduct(product);
     setShowModal(true);
+  };
+
+  const handleDelete = async (product) => {
+    if (window.confirm(`Are you sure you want to delete "${product.name}"?`)) {
+      try {
+        await dispatch(deleteProduct(product._id)).unwrap();
+        toast.success('Product deleted successfully!');
+      } catch (error) {
+        // Error handled by Redux
+      }
+    }
   };
 
   const handleCloseModal = () => {
@@ -58,6 +75,7 @@ const Products = () => {
           products={products}
           isLoading={isLoading}
           onEdit={handleEdit}
+          onDelete={handleDelete}
         />
       </div>
 

@@ -25,6 +25,30 @@ export const createProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  'products/update',
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const response = await productService.update(id, data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || 'Failed to update product');
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  'products/delete',
+  async (id, { rejectWithValue }) => {
+    try {
+      await productService.delete(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.error || 'Failed to delete product');
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -53,6 +77,15 @@ const productSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.items.push(action.payload);
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const index = state.items.findIndex(item => item._id === action.payload._id);
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.items = state.items.filter(item => item._id !== action.payload);
       });
   },
 });

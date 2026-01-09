@@ -7,11 +7,21 @@ const productService = {
   },
 
   create: (data) => {
-    return api.post(API_ENDPOINTS.PRODUCTS, data);
+    return api.post(API_ENDPOINTS.PRODUCTS, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   },
 
   update: (id, data) => {
-    return api.put(API_ENDPOINTS.PRODUCT_BY_ID(id), data);
+    const config = {};
+    if (data instanceof FormData) {
+      config.headers = {
+        'Content-Type': 'multipart/form-data',
+      };
+    }
+    return api.put(API_ENDPOINTS.PRODUCT_BY_ID(id), data, config);
   },
 
   delete: (id) => {

@@ -4,6 +4,7 @@ import { fetchUsers, deleteUser } from '../../redux/slices/userSlice';
 import Modal from '../../components/common/Modal';
 import UserForm from '../../components/users/UserForm';
 import UserTable from '../../components/users/UserTable';
+import toast from 'react-hot-toast';
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,14 @@ const Users = () => {
     setIsModalOpen(true);
   };
 
-  const handleDeleteUser = (userId) => {
+  const handleDeleteUser = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
-      dispatch(deleteUser(userId));
+      try {
+        await dispatch(deleteUser(userId)).unwrap();
+        toast.success('User deleted successfully!');
+      } catch (error) {
+        toast.error('Failed to delete user');
+      }
     }
   };
 
