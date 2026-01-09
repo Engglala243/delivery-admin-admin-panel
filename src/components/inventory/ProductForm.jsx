@@ -63,7 +63,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Product Name
           </label>
           <input
@@ -78,7 +78,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Category
           </label>
           <select
@@ -99,7 +99,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Description
         </label>
         <textarea
@@ -114,7 +114,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Product Images
         </label>
         <input
@@ -124,7 +124,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
           onChange={handleImageChange}
           className="input-field"
         />
-        <p className="text-sm text-gray-500 mt-1">Select up to 5 images</p>
+        <p className="text-sm text-gray-600 mt-1">Select up to 5 images</p>
         
         {/* Image Preview */}
         {imagePreview.length > 0 && (
@@ -134,7 +134,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
                 <img
                   src={url}
                   alt={`Preview ${index + 1}`}
-                  className="w-full h-20 object-cover rounded border"
+                  className="w-full h-20 object-cover rounded border border-gray-400"
                 />
               </div>
             ))}
@@ -144,7 +144,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Price ($)
           </label>
           <input
@@ -161,7 +161,7 @@ const ProductForm = ({ product, categories, onSubmit, onCancel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Stock Quantity
           </label>
           <input

@@ -37,12 +37,12 @@ const Orders = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Orders Management</h1>
+        <h1 className="text-2xl font-bold text-black">Orders Management</h1>
         <div className="flex items-center space-x-4">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="all">All Orders</option>
             <option value="pending">Pending</option>
@@ -56,7 +56,7 @@ const Orders = () => {
       </div>
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className="bg-white border border-black text-black px-4 py-3 rounded mb-4">
           {error}
         </div>
       )}

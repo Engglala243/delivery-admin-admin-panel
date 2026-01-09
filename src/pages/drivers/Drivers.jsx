@@ -39,17 +39,17 @@ const Drivers = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Drivers Management</h1>
+        <h1 className="text-2xl font-bold text-black">Drivers Management</h1>
         <button
           onClick={handleAddDriver}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="btn-primary"
         >
           Add Driver
         </button>
       </div>
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className="bg-white border border-black text-black px-4 py-3 rounded mb-4">
           {error}
         </div>
       )}

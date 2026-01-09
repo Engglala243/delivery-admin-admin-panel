@@ -23,32 +23,32 @@ const Dashboard = () => {
       title: 'Total Orders',
       value: stats.totalOrders,
       icon: ClipboardDocumentListIcon,
-      color: 'bg-blue-500',
+      color: 'bg-black',
     },
     {
       title: 'Total Users',
       value: stats.totalUsers,
       icon: UsersIcon,
-      color: 'bg-green-500',
+      color: 'bg-black',
     },
     {
       title: 'Total Products',
       value: stats.totalProducts,
       icon: CubeIcon,
-      color: 'bg-purple-500',
+      color: 'bg-black',
     },
     {
       title: 'Total Drivers',
       value: stats.totalDrivers,
       icon: TruckIcon,
-      color: 'bg-orange-500',
+      color: 'bg-black',
     },
   ];
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
   }
@@ -56,7 +56,7 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-black">Dashboard</h1>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -65,9 +65,9 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-medium text-gray-900">Recent Orders</h2>
+      <div className="bg-white rounded-lg shadow border border-gray-300">
+        <div className="px-6 py-4 border-b border-gray-300">
+          <h2 className="text-lg font-medium text-black">Recent Orders</h2>
         </div>
         <RecentOrders orders={stats.recentOrders} />
       </div>

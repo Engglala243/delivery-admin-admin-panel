@@ -70,7 +70,7 @@ const DriverForm = ({ driver, onClose }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Name
         </label>
         <input
@@ -79,12 +79,12 @@ const DriverForm = ({ driver, onClose }) => {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Email
         </label>
         <input
@@ -93,12 +93,12 @@ const DriverForm = ({ driver, onClose }) => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Phone
         </label>
         <input
@@ -107,12 +107,12 @@ const DriverForm = ({ driver, onClose }) => {
           value={formData.phone}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           License Number
         </label>
         <input
@@ -121,15 +121,15 @@ const DriverForm = ({ driver, onClose }) => {
           value={formData.licenseNumber}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div className="space-y-3">
-        <h3 className="text-lg font-medium text-gray-900">Vehicle Information</h3>
+        <h3 className="text-lg font-medium text-black">Vehicle Information</h3>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Vehicle Type
           </label>
           <select
@@ -137,7 +137,7 @@ const DriverForm = ({ driver, onClose }) => {
             value={formData.vehicleInfo.type}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           >
             <option value="">Select vehicle type</option>
             <option value="Motorcycle">Motorcycle</option>
@@ -149,7 +149,7 @@ const DriverForm = ({ driver, onClose }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Vehicle Model
           </label>
           <input
@@ -158,12 +158,12 @@ const DriverForm = ({ driver, onClose }) => {
             value={formData.vehicleInfo.model}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Plate Number
           </label>
           <input
@@ -172,20 +172,20 @@ const DriverForm = ({ driver, onClose }) => {
             value={formData.vehicleInfo.plateNumber}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Status
         </label>
         <select
           name="status"
           value={formData.status}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         >
           <option value="available">Available</option>
           <option value="busy">Busy</option>
@@ -197,13 +197,13 @@ const DriverForm = ({ driver, onClose }) => {
         <button
           type="button"
           onClick={onClose}
-          className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+          className="btn-secondary"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="btn-primary"
         >
           {driver ? 'Update' : 'Create'}
         </button>

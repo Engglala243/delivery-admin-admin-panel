@@ -68,7 +68,7 @@ const UserForm = ({ user, onClose }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Name
         </label>
         <input
@@ -77,12 +77,12 @@ const UserForm = ({ user, onClose }) => {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Email
         </label>
         <input
@@ -91,12 +91,12 @@ const UserForm = ({ user, onClose }) => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Phone
         </label>
         <input
@@ -105,15 +105,15 @@ const UserForm = ({ user, onClose }) => {
           value={formData.phone}
           onChange={handleChange}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         />
       </div>
 
       <div className="space-y-3">
-        <h3 className="text-lg font-medium text-gray-900">Address</h3>
+        <h3 className="text-lg font-medium text-black">Address</h3>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Street
           </label>
           <input
@@ -121,13 +121,13 @@ const UserForm = ({ user, onClose }) => {
             name="address.street"
             value={formData.address.street}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-black mb-1">
               City
             </label>
             <input
@@ -135,11 +135,11 @@ const UserForm = ({ user, onClose }) => {
               name="address.city"
               value={formData.address.city}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-black mb-1">
               State
             </label>
             <input
@@ -147,13 +147,13 @@ const UserForm = ({ user, onClose }) => {
               name="address.state"
               value={formData.address.state}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Zip Code
           </label>
           <input
@@ -161,7 +161,7 @@ const UserForm = ({ user, onClose }) => {
             name="address.zipCode"
             value={formData.address.zipCode}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
           />
         </div>
       </div>
@@ -170,13 +170,13 @@ const UserForm = ({ user, onClose }) => {
         <button
           type="button"
           onClick={onClose}
-          className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+          className="btn-secondary"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="btn-primary"
         >
           {user ? 'Update' : 'Create'}
         </button>

@@ -4,29 +4,10 @@ const OrderTable = ({ orders, loading, onView, onStatusUpdate }) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
   }
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'confirmed':
-        return 'bg-blue-100 text-blue-800';
-      case 'preparing':
-        return 'bg-purple-100 text-purple-800';
-      case 'out_for_delivery':
-        return 'bg-orange-100 text-orange-800';
-      case 'delivered':
-        return 'bg-green-100 text-green-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -39,54 +20,54 @@ const OrderTable = ({ orders, loading, onView, onStatusUpdate }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+    <div className="bg-white rounded-lg shadow border border-gray-300 overflow-hidden">
+      <table className="min-w-full divide-y divide-gray-300">
+        <thead className="bg-gray-100">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Order Number
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Customer
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Items
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Total Amount
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Status
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Date
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y divide-gray-300">
           {orders.map((order) => (
-            <tr key={order._id} className="hover:bg-gray-50">
+            <tr key={order._id} className="hover:bg-gray-100">
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">{order.orderNumber}</div>
+                <div className="text-sm font-medium text-black">{order.orderNumber}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+                <div className="text-sm text-black">
                   {order.user?.name || 'Unknown User'}
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-600">
                   {order.user?.email}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+                <div className="text-sm text-black">
                   {order.items?.length || 0} items
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-gray-900">
+                <div className="text-sm font-medium text-black">
                   ${order.totalAmount?.toFixed(2)}
                 </div>
               </td>
@@ -94,7 +75,7 @@ const OrderTable = ({ orders, loading, onView, onStatusUpdate }) => {
                 <select
                   value={order.status}
                   onChange={(e) => onStatusUpdate(order._id, e.target.value)}
-                  className={`text-xs font-semibold rounded-full px-2 py-1 border-0 ${getStatusColor(order.status)}`}
+                  className="text-xs font-semibold rounded-full px-2 py-1 bg-white text-black border border-black focus:outline-none focus:ring-2 focus:ring-black"
                 >
                   <option value="pending">Pending</option>
                   <option value="confirmed">Confirmed</option>
@@ -105,14 +86,14 @@ const OrderTable = ({ orders, loading, onView, onStatusUpdate }) => {
                 </select>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+                <div className="text-sm text-black">
                   {formatDate(order.createdAt)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <button
                   onClick={() => onView(order)}
-                  className="text-blue-600 hover:text-blue-900"
+                  className="text-black hover:text-gray-600 border border-gray-300 rounded px-2 py-1 hover:border-black"
                 >
                   View Details
                 </button>
@@ -123,7 +104,7 @@ const OrderTable = ({ orders, loading, onView, onStatusUpdate }) => {
       </table>
       
       {orders.length === 0 && (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-gray-600">
           No orders found
         </div>
       )}

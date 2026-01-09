@@ -26,16 +26,16 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className={`fixed inset-y-0 left-0 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} bg-white shadow-lg transition-all duration-300`}>
-      <div className="flex items-center justify-between h-16 px-4 border-b">
-        <h1 className={`font-bold text-xl text-gray-800 ${!sidebarOpen && 'hidden'}`}>
+    <div className={`fixed inset-y-0 left-0 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} bg-white shadow-lg border-r border-black transition-all duration-300`}>
+      <div className="flex items-center justify-between h-16 px-4 border-b border-black">
+        <h1 className={`font-bold text-xl text-black ${!sidebarOpen && 'hidden'}`}>
           Admin Panel
         </h1>
         <button
           onClick={() => dispatch(toggleSidebar())}
-          className="p-2 rounded-lg hover:bg-gray-100"
+          className="p-2 rounded-lg hover:bg-gray-100 border border-gray-300"
         >
-          <Bars3Icon className="h-6 w-6" />
+          <Bars3Icon className="h-6 w-6 text-black" />
         </button>
       </div>
       
@@ -47,12 +47,12 @@ const Sidebar = () => {
               key={item.name}
               to={item.href}
               className={({ isActive }) =>
-                `flex items-center px-4 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors ${
-                  isActive ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : ''
+                `flex items-center px-4 py-3 hover:bg-gray-100 transition-colors ${
+                  isActive ? 'bg-black text-white border-r-4 border-black' : 'text-black'
                 }`
               }
             >
-              <Icon className="h-6 w-6" />
+              <Icon className={`h-6 w-6`} />
               <span className={`ml-3 ${!sidebarOpen && 'hidden'}`}>{item.name}</span>
             </NavLink>
           );

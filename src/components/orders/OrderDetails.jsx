@@ -1,25 +1,6 @@
 import React from 'react';
 
 const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'confirmed':
-        return 'bg-blue-100 text-blue-800';
-      case 'preparing':
-        return 'bg-purple-100 text-purple-800';
-      case 'out_for_delivery':
-        return 'bg-orange-100 text-orange-800';
-      case 'delivered':
-        return 'bg-green-100 text-green-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -35,37 +16,37 @@ const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
       {/* Order Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Order #{order.orderNumber}</h2>
+          <h2 className="text-xl font-bold text-black">Order #{order.orderNumber}</h2>
           <p className="text-gray-600">Placed on {formatDate(order.createdAt)}</p>
         </div>
-        <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${getStatusColor(order.status)}`}>
+        <span className="inline-flex px-3 py-1 text-sm font-semibold rounded-full bg-white text-black border border-black">
           {order.status.replace('_', ' ').toUpperCase()}
         </span>
       </div>
 
       {/* Customer Information */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Customer Information</h3>
+      <div className="bg-gray-100 p-4 rounded-lg border border-gray-300">
+        <h3 className="text-lg font-semibold text-black mb-3">Customer Information</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <p className="text-sm text-gray-600">Name</p>
-            <p className="font-medium">{order.user?.name || 'Unknown'}</p>
+            <p className="font-medium text-black">{order.user?.name || 'Unknown'}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Email</p>
-            <p className="font-medium">{order.user?.email || 'N/A'}</p>
+            <p className="font-medium text-black">{order.user?.email || 'N/A'}</p>
           </div>
           <div>
             <p className="text-sm text-gray-600">Phone</p>
-            <p className="font-medium">{order.user?.phone || 'N/A'}</p>
+            <p className="font-medium text-black">{order.user?.phone || 'N/A'}</p>
           </div>
         </div>
       </div>
 
       {/* Delivery Address */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Delivery Address</h3>
-        <div className="text-gray-700">
+      <div className="bg-gray-100 p-4 rounded-lg border border-gray-300">
+        <h3 className="text-lg font-semibold text-black mb-3">Delivery Address</h3>
+        <div className="text-black">
           {order.deliveryAddress ? (
             <div>
               <p>{order.deliveryAddress.street}</p>
@@ -79,28 +60,28 @@ const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
 
       {/* Order Items */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Order Items</h3>
-        <div className="bg-white border rounded-lg overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <h3 className="text-lg font-semibold text-black mb-3">Order Items</h3>
+        <div className="bg-white border border-gray-300 rounded-lg overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-300">
+            <thead className="bg-gray-100">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase">Product</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase">Quantity</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase">Price</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-black uppercase">Total</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-300">
               {order.items?.map((item, index) => (
                 <tr key={index}>
                   <td className="px-4 py-3">
-                    <div className="text-sm font-medium text-gray-900">
+                    <div className="text-sm font-medium text-black">
                       {item.product?.name || 'Unknown Product'}
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-900">{item.quantity}</td>
-                  <td className="px-4 py-3 text-sm text-gray-900">${item.price?.toFixed(2)}</td>
-                  <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                  <td className="px-4 py-3 text-sm text-black">{item.quantity}</td>
+                  <td className="px-4 py-3 text-sm text-black">${item.price?.toFixed(2)}</td>
+                  <td className="px-4 py-3 text-sm font-medium text-black">
                     ${(item.quantity * item.price).toFixed(2)}
                   </td>
                 </tr>
@@ -111,47 +92,47 @@ const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
       </div>
 
       {/* Order Summary */}
-      <div className="bg-gray-50 p-4 rounded-lg">
+      <div className="bg-gray-100 p-4 rounded-lg border border-gray-300">
         <div className="flex justify-between items-center">
-          <span className="text-lg font-semibold text-gray-900">Total Amount</span>
-          <span className="text-xl font-bold text-gray-900">${order.totalAmount?.toFixed(2)}</span>
+          <span className="text-lg font-semibold text-black">Total Amount</span>
+          <span className="text-xl font-bold text-black">${order.totalAmount?.toFixed(2)}</span>
         </div>
       </div>
 
       {/* Driver Information */}
       {order.driver && (
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">Assigned Driver</h3>
+        <div className="bg-gray-100 p-4 rounded-lg border border-gray-300">
+          <h3 className="text-lg font-semibold text-black mb-3">Assigned Driver</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600">Name</p>
-              <p className="font-medium">{order.driver.name}</p>
+              <p className="font-medium text-black">{order.driver.name}</p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Phone</p>
-              <p className="font-medium">{order.driver.phone}</p>
+              <p className="font-medium text-black">{order.driver.phone}</p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Vehicle</p>
-              <p className="font-medium">
+              <p className="font-medium text-black">
                 {order.driver.vehicleInfo?.type} - {order.driver.vehicleInfo?.model}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Plate Number</p>
-              <p className="font-medium">{order.driver.vehicleInfo?.plateNumber}</p>
+              <p className="font-medium text-black">{order.driver.vehicleInfo?.plateNumber}</p>
             </div>
           </div>
         </div>
       )}
 
       {/* Status Update */}
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">Update Status</h3>
+      <div className="bg-gray-100 p-4 rounded-lg border border-gray-300">
+        <h3 className="text-lg font-semibold text-black mb-3">Update Status</h3>
         <select
           value={order.status}
           onChange={(e) => onStatusUpdate(order._id, e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-field"
         >
           <option value="pending">Pending</option>
           <option value="confirmed">Confirmed</option>
@@ -164,9 +145,9 @@ const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
 
       {/* Delivery Information */}
       {order.deliveredAt && (
-        <div className="bg-green-50 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold text-green-900 mb-2">Delivery Completed</h3>
-          <p className="text-green-700">Delivered on {formatDate(order.deliveredAt)}</p>
+        <div className="bg-white p-4 rounded-lg border border-black">
+          <h3 className="text-lg font-semibold text-black mb-2">Delivery Completed</h3>
+          <p className="text-black">Delivered on {formatDate(order.deliveredAt)}</p>
         </div>
       )}
 
@@ -174,7 +155,7 @@ const OrderDetails = ({ order, onClose, onStatusUpdate }) => {
       <div className="flex justify-end">
         <button
           onClick={onClose}
-          className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+          className="btn-secondary"
         >
           Close
         </button>

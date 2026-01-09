@@ -40,7 +40,7 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Category Name
         </label>
         <input
@@ -55,7 +55,7 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Description
         </label>
         <textarea
@@ -69,7 +69,7 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-black mb-1">
           Category Image
         </label>
         <input
@@ -83,7 +83,7 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
             <img
               src={imagePreview}
               alt="Preview"
-              className="h-20 w-20 object-cover rounded-lg"
+              className="h-20 w-20 object-cover rounded-lg border border-gray-400"
             />
           </div>
         )}

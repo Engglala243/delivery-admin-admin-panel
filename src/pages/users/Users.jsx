@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, deleteUser } from '../../redux/slices/userSlice';
-import Modal from '../../components/common/Modal';
-import UserForm from '../../components/users/UserForm';
-import UserTable from '../../components/users/UserTable';
-import toast from 'react-hot-toast';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers, deleteUser } from "../../redux/slices/userSlice";
+import Modal from "../../components/common/Modal";
+import UserForm from "../../components/users/UserForm";
+import UserTable from "../../components/users/UserTable";
+import toast from "react-hot-toast";
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { users, loading, error } = useSelector(state => state.users);
+  const { users, loading, error } = useSelector((state) => state.users);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
 
@@ -27,12 +27,12 @@ const Users = () => {
   };
 
   const handleDeleteUser = async (userId) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
+    if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         await dispatch(deleteUser(userId)).unwrap();
-        toast.success('User deleted successfully!');
+        toast.success("User deleted successfully!");
       } catch (error) {
-        toast.error('Failed to delete user');
+        toast.error("Failed to delete user");
       }
     }
   };
@@ -44,18 +44,8 @@ const Users = () => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Users Management</h1>
-        <button
-          onClick={handleAddUser}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-        >
-          Add User
-        </button>
-      </div>
-
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className="bg-white border border-black text-black px-4 py-3 rounded mb-4">
           {error}
         </div>
       )}
@@ -70,12 +60,9 @@ const Users = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        title={editingUser ? 'Edit User' : 'Add User'}
+        title={editingUser ? "Edit User" : "Add User"}
       >
-        <UserForm
-          user={editingUser}
-          onClose={handleCloseModal}
-        />
+        <UserForm user={editingUser} onClose={handleCloseModal} />
       </Modal>
     </div>
   );

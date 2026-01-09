@@ -60,7 +60,7 @@ const Products = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Products</h1>
+        <h1 className="text-2xl font-bold text-black">Products</h1>
         <button
           onClick={() => setShowModal(true)}
           className="btn-primary flex items-center space-x-2"
@@ -70,7 +70,7 @@ const Products = () => {
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
+      <div className="bg-white rounded-lg shadow border border-gray-300">
         <ProductTable
           products={products}
           isLoading={isLoading}
